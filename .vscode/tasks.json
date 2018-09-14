@@ -9,9 +9,10 @@
             "command": "g++",
             "args": [
                 "-g",
-                "-Wall",
+                "-W",
                 "-std=c++11",
-                "hello.cpp"
+                "hello.cpp",
+                "utils.cpp"
             ],
             "group": {
                 "kind": "build",
