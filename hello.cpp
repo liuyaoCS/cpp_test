@@ -1,71 +1,5 @@
-#include<iostream>
-#include<cstring>
-#include<string>
-using namespace std;
+#include "hello.h"
 
-int count;
-extern void write_extern(void);
-
-void test_base();
-void test_pointer();
-void test_struct();
-void test_object();
-
-struct Person{
-    int id;
-    string name;
-};
-
-class OPerson{ //抽象类不能被用于实例化对象，它只能作为接口使用,子类必须实现每个虚函数。
-    public :
-        int id;
-        string name;
-        virtual void say(string content){
-            cout << "base says:" << content << endl;
-        }
-        //纯虚函数 类中至少有一个函数被声明为纯虚函数，则这个类就是抽象类;
-        virtual string getName()=0;
-        
-        //静态成员变量在类中仅仅是声明，没有定义，所以要在类的外面定义，实际上是给静态成员变量分配内存。
-        static int count;
-        static int getCount(){
-            return count;
-        }
-};
-int OPerson::count=1;
-
-class Student : public OPerson{ //usually public inherit 
-    public :
-        //在类内部定义的函数默认为inline（10行以内，不要有递归，循环，switch）
-        void say(string content){
-            cout << this->name << " says: " << content << endl;
-        }
-        string getName(){
-            return "[s]"+name;
-        }
-        Student operator+(Student& s){
-            Student ss;
-            ss.id=this->id+s.id;
-            ss.name=this->name+":"+s.name;
-            return ss;
-        }
-};
-class Teacher : public OPerson{
-    public :
-        Teacher(int i,string n){
-            this->id=i;
-            this->name=n;
-        }
-        void say(string content){
-            cout << this->name << " says: " << content << endl;
-        }
-        string getName(){
-            return "[t]"+name;
-        }
-        ~Teacher(){
-            cout << "teacher obj will be delete" << endl;
-        }
-};
 
 int main(){
     
@@ -73,6 +7,9 @@ int main(){
     test_pointer();
     test_struct();
     test_object();
+    test_file();
+    test_exception();
+    test_dynamic_memory();
 
     // keep terminal not exit
     //cin>> a; 
@@ -155,4 +92,38 @@ void test_object(){
     OPerson *pOP=&t;
     pOP->say("hi boys");
     cout << "name:" + pOP->getName() << endl;
+}
+
+void test_file(){
+    fstream fs;
+    string content = "hi ,i am ly";
+    fs.open("test.txt", ios::app | ios::out); //如果有ios::in在，不会自动创建文件(ios::app也存在的情况下，不存在也会自动创建)
+    fs << content << endl;
+    // fs >> content ;
+    // cout << "read from fs: " << content << endl;
+    fs.close();
+}
+
+void test_exception(){
+    try{
+        string err="this is a test exception";
+        throw err;
+    }catch(string msg){
+        cerr << msg << endl;
+    }
+}
+
+void test_dynamic_memory(){
+    int *c= NULL;
+    c = new int;
+    *c = 1;
+    delete c;
+
+    string * str=new string;
+    *str="hi str";
+    delete str;
+
+    char * pchar=new char[20];
+    pchar[2]='a';
+    delete[] pchar;
 }
