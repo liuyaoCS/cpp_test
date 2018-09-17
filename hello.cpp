@@ -9,10 +9,62 @@ extern void write_extern(void);
 void test_base();
 void test_pointer();
 void test_struct();
+void test_object();
 
 struct Person{
     int id;
     string name;
+};
+
+class OPerson{ //抽象类不能被用于实例化对象，它只能作为接口使用,子类必须实现每个虚函数。
+    public :
+        int id;
+        string name;
+        virtual void say(string content){
+            cout << "base says:" << content << endl;
+        }
+        //纯虚函数 类中至少有一个函数被声明为纯虚函数，则这个类就是抽象类;
+        virtual string getName()=0;
+        
+        //静态成员变量在类中仅仅是声明，没有定义，所以要在类的外面定义，实际上是给静态成员变量分配内存。
+        static int count;
+        static int getCount(){
+            return count;
+        }
+};
+int OPerson::count=1;
+
+class Student : public OPerson{ //usually public inherit 
+    public :
+        //在类内部定义的函数默认为inline（10行以内，不要有递归，循环，switch）
+        void say(string content){
+            cout << this->name << " says: " << content << endl;
+        }
+        string getName(){
+            return "[s]"+name;
+        }
+        Student operator+(Student& s){
+            Student ss;
+            ss.id=this->id+s.id;
+            ss.name=this->name+":"+s.name;
+            return ss;
+        }
+};
+class Teacher : public OPerson{
+    public :
+        Teacher(int i,string n){
+            this->id=i;
+            this->name=n;
+        }
+        void say(string content){
+            cout << this->name << " says: " << content << endl;
+        }
+        string getName(){
+            return "[t]"+name;
+        }
+        ~Teacher(){
+            cout << "teacher obj will be delete" << endl;
+        }
 };
 
 int main(){
@@ -20,6 +72,7 @@ int main(){
     test_base();
     test_pointer();
     test_struct();
+    test_object();
 
     // keep terminal not exit
     //cin>> a; 
@@ -57,9 +110,8 @@ void test_base(){
         Red,
         Green,
         Blue
-    } color;
-    Color c=Blue;
-    color=Red;
+    };
+    Color color=Blue;
 }
 
 void test_pointer(){
@@ -77,4 +129,30 @@ void test_struct(){
     
     Person* pp=&p1;
     cout << "person name:" << pp->name << endl;
+}
+
+void test_object(){
+
+    //静态成员变量，函数
+    cout << "count: " << OPerson::getCount();
+
+    //继承
+    Student s;
+    s.id = 2;
+    s.name = "dm";
+    s.say("hi i am new here");
+
+    //操作符重载
+    Student p;
+    p.id=3;
+    p.name="dwife";
+
+    Student couple=s+p;
+    couple.say("welcome to our house");
+
+    //多态
+    Teacher t(4,"zls");
+    OPerson *pOP=&t;
+    pOP->say("hi boys");
+    cout << "name:" + pOP->getName() << endl;
 }
