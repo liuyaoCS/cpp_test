@@ -1,5 +1,5 @@
 #include "hello.h"
-
+using namespace demo;
 
 int main(){
     
@@ -16,7 +16,7 @@ int main(){
     return 0;
 }
 
-void test_base(){
+void  demo::test_base(){
     //typedef 
     typedef int int_name;
     int_name a = 0;
@@ -51,7 +51,7 @@ void test_base(){
     Color color=Blue;
 }
 
-void test_pointer(){
+void demo::test_pointer(){
     int a;
     cout << "address of a:" << &a << " value of a:" << a << endl;
 
@@ -59,7 +59,7 @@ void test_pointer(){
     cout << "address of b:" << &b << " value of b:" << b << endl;
 }
 
-void test_struct(){
+void demo::test_struct(){
     Person p1;
     p1.id=0;
     p1.name="ly";
@@ -68,7 +68,7 @@ void test_struct(){
     cout << "person name:" << pp->name << endl;
 }
 
-void test_object(){
+void demo::test_object(){
 
     //静态成员变量，函数
     cout << "count: " << OPerson::getCount();
@@ -94,7 +94,7 @@ void test_object(){
     cout << "name:" + pOP->getName() << endl;
 }
 
-void test_file(){
+void demo::test_file(){
     fstream fs;
     string content = "hi ,i am ly";
     fs.open("test.txt", ios::app | ios::out); //如果有ios::in在，不会自动创建文件(ios::app也存在的情况下，不存在也会自动创建)
@@ -104,7 +104,7 @@ void test_file(){
     fs.close();
 }
 
-void test_exception(){
+void demo::test_exception(){
     try{
         string err="this is a test exception";
         throw err;
@@ -113,7 +113,7 @@ void test_exception(){
     }
 }
 
-void test_dynamic_memory(){
+void demo::test_dynamic_memory(){
     int *c= NULL;
     c = new int;
     *c = 1;
