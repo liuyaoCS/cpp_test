@@ -8,6 +8,7 @@
 #include<vector>
 #include<csignal>
 #include<unistd.h>
+#include<pthread.h>
 using namespace std;
 
 #define DEBUG  //定义为预处理器变量
@@ -28,6 +29,7 @@ namespace demo{
     void test_exception();
     void test_dynamic_memory();
     template<typename T>  void test_template(T &t);
+    void test_thread();
     void test_signal();
     void sigHandler(int sig);
 

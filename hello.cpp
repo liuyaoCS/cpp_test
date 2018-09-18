@@ -16,6 +16,7 @@ int main()
     test_exception();
     test_dynamic_memory();
     test_template("hi");
+    test_thread();
     test_signal();
 
     // keep terminal not exit
@@ -171,6 +172,19 @@ void demo::test_template(T &t)
     {
         cout << "stack empty " << endl;
     }
+}
+
+void* run(void * arg){
+    cout << "i am new thread, " << (char*)arg << endl;
+    sleep(1);
+}
+void demo::test_thread(){
+    pthread_t tid;
+    const char *msg="thread msg";
+    void *ret;
+    pthread_create(&tid,NULL,run,(void*)msg);
+    pthread_join(tid,&ret);
+    cout << "thread exit with status: " << ret << endl;
 }
 
 void demo::test_signal()

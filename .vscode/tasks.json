@@ -10,6 +10,7 @@
             "args": [
                 "-g",
                 "-W",
+                "-pthread",
                 "-std=c++11",
                 "hello.cpp",
                 "utils.cpp"
