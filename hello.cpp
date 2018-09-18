@@ -2,7 +2,11 @@
 using namespace demo;
 
 int main(){
-    
+
+#ifdef DEBUG 
+    cout <<"Trace: Inside main function" << endl; 
+#endif
+
     test_base();
     test_pointer();
     test_struct();
@@ -18,6 +22,15 @@ int main(){
 }
 
 void  demo::test_base(){
+    //define
+    cout << MIN(30,100) << MKSTR(is smaller) << endl;
+    int xy=110;
+    cout << "xy: " << CONCAT(x, y) << endl;
+    cout << "Value of __LINE__ : " << __LINE__ << endl; 
+    cout << "Value of __FILE__ : " << __FILE__ << endl; 
+    cout << "Value of __DATE__ : " << __DATE__ << endl; 
+    cout << "Value of __TIME__ : " << __TIME__ << endl;
+
     //typedef 
     typedef int int_name;
     int_name a = 0;

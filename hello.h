@@ -1,9 +1,17 @@
+#ifndef HELLO_H
+#define HELLO_H
+
 #include<iostream>
 #include<fstream>
 #include<cstring>
 #include<string>
 #include<vector>
 using namespace std;
+
+#define DEBUG  //定义为预处理器变量
+#define MIN(a,b) (a<b?a:b)
+#define MKSTR(x) #x             //# 运算符会把 replacement-text 令牌转换为用引号引起来的字符串
+#define CONCAT(x,y)  x##y  //## 运算符用于连接两个令牌
 
 int count;
 extern void write_extern(void);
@@ -94,3 +102,4 @@ namespace demo{
     };
 }
 
+#endif
