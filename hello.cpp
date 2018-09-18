@@ -46,8 +46,8 @@ void demo::test_base()
     //u l :U 表示无符号整数（unsigned），L 表示长整数（long）。后缀可以是大写，也可以是小写，U 和 L 的顺序任意
     unsigned long c = 23ul;
 
-//const
-#define LENGTH 10
+    //const
+    #define LENGTH 10
     const int WIDTH = 10;
 
     //auto
@@ -69,6 +69,14 @@ void demo::test_base()
         Blue
     };
     Color color = Blue;
+
+    //union
+    union{
+        int ival;
+        char cval;
+    } val;
+    val.ival=0x12345678;
+    cout << "union cval=" << val.cval << endl; //Ox78小端模式
 }
 
 void demo::test_pointer()
