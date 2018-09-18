@@ -2,6 +2,7 @@
 #include<fstream>
 #include<cstring>
 #include<string>
+#include<vector>
 using namespace std;
 
 int count;
@@ -16,6 +17,25 @@ namespace demo{
     void test_file();
     void test_exception();
     void test_dynamic_memory();
+    template<typename T>  void test_template(T &t);
+
+    template<class T> class Stack{
+        private:
+            vector<T> items;
+        public:
+            void push(T &t){
+                items.push_back(t);
+            }
+            void pop(){
+                items.pop_back();
+            }
+            T& top(){
+                return items.back();
+            }
+            bool isEmpty(){
+                return items.empty();
+            }
+    };
 
     struct Person{
         int id;

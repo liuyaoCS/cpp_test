@@ -10,6 +10,7 @@ int main(){
     test_file();
     test_exception();
     test_dynamic_memory();
+    test_template("hi");
 
     // keep terminal not exit
     //cin>> a; 
@@ -126,4 +127,17 @@ void demo::test_dynamic_memory(){
     char * pchar=new char[20];
     pchar[2]='a';
     delete[] pchar;
+}
+
+template<typename T>  void demo::test_template(T& t){
+    cout << "parameter : " << t << endl;
+    
+    string p=t;
+    Stack<string> strStack;
+    strStack.push(p);
+    cout << "stack top : " + strStack.top() << endl;
+    strStack.pop();
+    if(strStack.isEmpty()){
+        cout << "stack empty " << endl;
+    }
 }
