@@ -21,6 +21,8 @@
         "typeinfo": "cpp",
         "fstream": "cpp",
         "cstring": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "csignal": "cpp",
+        "sstream": "cpp"
     }
 }

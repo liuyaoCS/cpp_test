@@ -6,6 +6,8 @@
 #include<cstring>
 #include<string>
 #include<vector>
+#include<csignal>
+#include<unistd.h>
 using namespace std;
 
 #define DEBUG  //定义为预处理器变量
@@ -26,6 +28,8 @@ namespace demo{
     void test_exception();
     void test_dynamic_memory();
     template<typename T>  void test_template(T &t);
+    void test_signal();
+    void sigHandler(int sig);
 
     template<class T> class Stack{
         private:
@@ -71,6 +75,9 @@ namespace demo{
     class Student : public OPerson{ //usually public inherit 
         public :
             //在类内部定义的函数默认为inline（10行以内，不要有递归，循环，switch）
+            Student(){
+                cout << "construct student" << endl;
+            }
             void say(string content){
                 cout << this->name << " says: " << content << endl;
             }
