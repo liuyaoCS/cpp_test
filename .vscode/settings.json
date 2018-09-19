@@ -23,6 +23,8 @@
         "cstring": "cpp",
         "string": "cpp",
         "csignal": "cpp",
-        "sstream": "cpp"
-    }
+        "sstream": "cpp",
+        "stdio.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

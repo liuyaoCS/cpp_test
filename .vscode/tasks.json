@@ -4,6 +4,21 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "build cutils",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-c",
+                "cutils.c",
+                "-o",
+                "cutils"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "build hello",
             "type": "shell",
             "command": "g++",
@@ -13,7 +28,10 @@
                 "-pthread",
                 "-std=c++11",
                 "hello.cpp",
-                "utils.cpp"
+                "utils.cpp",
+                "cutils",
+                "-o",
+                "hello"
             ],
             "group": {
                 "kind": "build",

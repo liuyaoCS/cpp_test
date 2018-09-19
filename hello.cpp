@@ -42,6 +42,7 @@ void demo::test_base()
     //extern :修饰符通常用于当有两个或多个文件共享相同的全局变量或函数的时候
     count = 5;
     write_extern();
+    test_c();
 
     //u l :U 表示无符号整数（unsigned），L 表示长整数（long）。后缀可以是大写，也可以是小写，U 和 L 的顺序任意
     unsigned long c = 23ul;
@@ -76,7 +77,7 @@ void demo::test_base()
         char cval;
     } val;
     val.ival=0x12345678;
-    cout << "union cval=" << val.cval << endl; //Ox78小端模式
+    cout << "union cval=" << val.cval << endl; //x=Ox78 小端模式
 }
 
 void demo::test_pointer()
@@ -182,17 +183,22 @@ void demo::test_template(T &t)
     }
 }
 
+volatile int val=0;
 void* run(void * arg){
     cout << "i am new thread, " << (char*)arg << endl;
+    val=2;
     sleep(1);
 }
 void demo::test_thread(){
     pthread_t tid;
     const char *msg="thread msg";
     void *ret;
+    val=1;
     pthread_create(&tid,NULL,run,(void*)msg);
     pthread_join(tid,&ret);
+    cout << "val=" << val << endl;
     cout << "thread exit with status: " << ret << endl;
+    
 }
 
 void demo::test_signal()

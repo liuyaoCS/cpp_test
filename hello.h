@@ -18,6 +18,9 @@ using namespace std;
 
 int count;
 extern void write_extern(void);
+extern "C" {
+    void test_c();
+}
 
 namespace demo{
 
