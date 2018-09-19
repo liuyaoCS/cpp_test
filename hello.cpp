@@ -5,7 +5,7 @@ int main()
 {
 
 #ifdef DEBUG
-    cout << "Trace: Inside main function" << endl;
+    cout << "###########Trace: Inside main function" << endl;
 #endif
 
     test_base();
@@ -26,6 +26,7 @@ int main()
 
 void demo::test_base()
 {
+    cout << "###########Function: " << __FUNCTION__ <<endl;
     //define
     cout << MIN(30, 100) << MKSTR(is smaller) << endl;
     int xy = 110;
@@ -82,6 +83,8 @@ void demo::test_base()
 
 void demo::test_pointer()
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     int a;
     cout << "address of a:" << &a << " value of a:" << a << endl;
 
@@ -91,6 +94,8 @@ void demo::test_pointer()
 
 void demo::test_struct()
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     Person p1;
     p1.id = 0;
     p1.name = "ly";
@@ -101,6 +106,7 @@ void demo::test_struct()
 
 void demo::test_object()
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
 
     //静态成员变量，函数
     cout << "count: " << OPerson::getCount() << endl;
@@ -129,6 +135,8 @@ void demo::test_object()
 
 void demo::test_file()
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     fstream fs;
     string content = "hi ,i am ly";
     fs.open("test.txt", ios::app | ios::out); //如果有ios::in在，不会自动创建文件(ios::app也存在的情况下，不存在也会自动创建)
@@ -140,6 +148,8 @@ void demo::test_file()
 
 void demo::test_exception()
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     try
     {
         string err = "this is a test exception";
@@ -153,6 +163,8 @@ void demo::test_exception()
 
 void demo::test_dynamic_memory()
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     int *c = NULL;
     c = new int;
     *c = 1;
@@ -170,6 +182,8 @@ void demo::test_dynamic_memory()
 template <typename T>
 void demo::test_template(T &t)
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     cout << "parameter : " << t << endl;
 
     string p = t;
@@ -190,6 +204,8 @@ void* run(void * arg){
     sleep(1);
 }
 void demo::test_thread(){
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     pthread_t tid;
     const char *msg="thread msg";
     void *ret;
@@ -203,6 +219,8 @@ void demo::test_thread(){
 
 void demo::test_signal()
 {
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
     signal(SIGINT, sigHandler);
     while (1)
     {
@@ -213,6 +231,7 @@ void demo::test_signal()
 }
 void demo::sigHandler(int sig)
 {
+
     cout << "signal " << sig << " receive" << endl;
     _exit(sig);
 }
