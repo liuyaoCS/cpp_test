@@ -1,14 +1,18 @@
 #ifndef HELLO_H
 #define HELLO_H
 
+#include<unistd.h>
+
 #include<iostream>
 #include<fstream>
 #include<cstring>
 #include<string>
 #include<vector>
+#include<atomic>
 #include<csignal>
-#include<unistd.h>
 #include<pthread.h>
+#include<memory>
+
 using namespace std;
 
 #define DEBUG  //定义为预处理器变量
@@ -33,6 +37,7 @@ namespace demo{
     void test_exception();
     void test_dynamic_memory();
     template<typename T>  void test_template(T &t);
+    void test_cpp11();
     void test_thread();
     void test_signal();
     void sigHandler(int sig);

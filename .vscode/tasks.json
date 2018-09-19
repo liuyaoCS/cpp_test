@@ -23,15 +23,10 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-g",
-                "-W",
-                "-pthread",
-                "-std=c++11",
-                "hello.cpp",
-                "utils.cpp",
-                "cutils",
-                "-o",
-                "hello"
+                "-g","-W",
+                "-pthread","-std=c++11",
+                "hello.cpp","utils.cpp","cutils",
+                "-o","hello"
             ],
             "group": {
                 "kind": "build",

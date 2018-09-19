@@ -16,6 +16,7 @@ int main()
     test_exception();
     test_dynamic_memory();
     test_template("hi");
+    test_cpp11();
     test_thread();
     test_signal();
 
@@ -51,11 +52,6 @@ void demo::test_base()
     //const
     #define LENGTH 10
     const int WIDTH = 10;
-
-    //auto
-    auto f = 3.14;        //double
-    auto s("hello");      //const char*
-    auto z = new auto(9); // int*
 
     //cstring string
     char c_str[12] = "hello,c str";
@@ -195,6 +191,31 @@ void demo::test_template(T &t)
     {
         cout << "stack empty " << endl;
     }
+}
+
+void demo::test_cpp11(){
+    cout << "###########FUNCTION: " << __FUNCTION__ << endl;
+
+    //auto 由编译器完成
+    auto f = 3.14;        //double
+    auto s("hello");      //const char*
+    auto z = new auto(9); // int*
+
+    //nullptr
+    char *a = nullptr;
+
+    //atomic
+    atomic_int count(100);
+
+    //explicit 指定构造函数或转换函数为显式，即它不能用于复制初始化和隐式转换。
+
+    //unique_ptr 所引用的对象只能有一个引用，自身被销毁时，所引用的对象也被销毁。
+    int *i=new int(10);
+    unique_ptr<int> u_ptr(i);
+    cout << "u_ptr -> " << *u_ptr << endl;
+
+    //lambda
+    
 }
 
 volatile int val=0;

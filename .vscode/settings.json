@@ -24,7 +24,10 @@
         "string": "cpp",
         "csignal": "cpp",
         "sstream": "cpp",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "vector": "cpp",
+        "cstddef": "cpp",
+        "functional": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
