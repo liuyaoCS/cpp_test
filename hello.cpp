@@ -20,9 +20,16 @@ int main()
     test_thread();
     test_signal();
 
+    test_common();
+
     // keep terminal not exit
     //cin>> a;
     return 0;
+}
+
+void demo::test_common(){
+    Student * pS=new Student; //equals new Student()
+    pS->name="test";
 }
 
 void demo::test_base()
@@ -75,6 +82,35 @@ void demo::test_base()
     } val;
     val.ival=0x12345678;
     cout << "union cval=" << val.cval << endl; //x=Ox78 小端模式
+
+    //cast c隐式转化->static_cast c强制转化->reinterpret_cast
+    int a1=4553;
+    char c1=a1;
+    
+    char cc=98;
+    int d=cc;
+
+    const char *p1  = "hello world"; 
+    //int pp = p1; //error
+    //int pp=static_cast<int>(p1);//error
+    long pp=reinterpret_cast<long>(p1);
+    cout << "c1=" << c1 << " d=" << d << " p1= "<< p1 <<" pp=" << pp << endl;
+
+    const void * pv= "test";
+    //const char* ip=pv; //error
+    //const char * cp1=static_cast<const char*>(pv); //null
+    const char * cp= reinterpret_cast<const char *>(pv);
+    cout << "cp=" << cp <<endl;
+
+    //typeid (need rtti)
+    if(typeid(a1)==typeid(int)){
+        cout << "equal int" << endl;
+    }else if(typeid(a1)==typeid(char)){
+        cout << "equal char" << endl;
+    }
+    cout << "type id: a1:" << typeid(a1).name() <<  endl;
+
+
 }
 
 void demo::test_pointer()
@@ -201,20 +237,24 @@ void demo::test_cpp11(){
     auto s("hello");      //const char*
     auto z = new auto(9); // int*
 
+    //__attribute__((unused)) 变量或者函数已经声明但是未使用，加此编译器不会报[-Wunused-xx]
+    int b __attribute__((unused));
+
     //nullptr
     char *a = nullptr;
-
-    //atomic
-    atomic_int count(100);
-
-    //explicit 指定构造函数或转换函数为显式，即它不能用于复制初始化和隐式转换。
 
     //unique_ptr 所引用的对象只能有一个引用，自身被销毁时，所引用的对象也被销毁。
     int *i=new int(10);
     unique_ptr<int> u_ptr(i);
     cout << "u_ptr -> " << *u_ptr << endl;
 
+    //atomic
+    atomic_int count(100);
+
+    //explicit 指定构造函数或转换函数为显式，即它不能用于复制初始化和隐式转换。
+
     //lambda
+    //override
     
 }
 

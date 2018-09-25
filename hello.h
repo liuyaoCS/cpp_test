@@ -42,6 +42,8 @@ namespace demo{
     void test_signal();
     void sigHandler(int sig);
 
+    void test_common();
+
     template<class T> class Stack{
         private:
             vector<T> items;
@@ -89,7 +91,9 @@ namespace demo{
             Student(){
                 cout << "construct student" << endl;
             }
-            void say(string content){
+            void say(string content) override{ // c++11 :override 编译器帮助检查重载
+                //子类强制调用父类方法
+                OPerson::say("inside child call parent function...");
                 cout << this->name << " says: " << content << endl;
             }
             string getName(){
