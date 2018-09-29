@@ -31,7 +31,9 @@ void demo::test_common(){
     Student * pS=new Student; //equals new Student()
     pS->name="test";
 }
-
+char print_char(){
+    return 's';
+}
 void demo::test_base()
 {
     cout << "###########Function: " << __FUNCTION__ <<endl;
@@ -44,9 +46,25 @@ void demo::test_base()
     cout << "Value of __DATE__ : " << __DATE__ << endl;
     cout << "Value of __TIME__ : " << __TIME__ << endl;
 
-    //typedef
-    typedef int int_name;
-    int_name a = 0;
+    //typedef //编译器声明别名（与声明变量语法类似，区别是一个是声明变量，一个是声明别名.一句话：提升变量定义为类型别名！） 而#define是与编译器替换
+    // typedef int int_arr[];
+    // int_arr tint_arr={1,2};
+    typedef char char_t, *char_p,  (*PFUN)(void) , char_arr[]; // 声明 char_t 为类型 char 之别名
+                                           // char_p 为 char* 之别名
+                                           // PFUN 为 char(*)(void) 之别名
+                                           //char_arr为char []之别名
+    PFUN pFun=print_char;
+    cout << "pFun :" << pFun() << endl;
+
+    struct{
+        int a;
+        string s;
+    } st;
+    typedef struct{
+        int aa;
+        string ss;
+    } STRUCT;
+    STRUCT sstt;
 
     //extern :修饰符通常用于当有两个或多个文件共享相同的全局变量或函数的时候
     count = 5;
@@ -66,6 +84,7 @@ void demo::test_base()
     cout << c_str << endl
          << str << endl;
 
+
     //enum
     enum Color
     {
@@ -83,12 +102,24 @@ void demo::test_base()
     val.ival=0x12345678;
     cout << "union cval=" << val.cval << endl; //x=Ox78 小端模式
 
-    //cast c隐式转化->static_cast c强制转化->reinterpret_cast
+    //cast 任何类型： c隐式转化->static_cast 
+    //     指针和引用：c强制转化->reinterpret_cast 运行时类型转化 dynamic_cast
     int a1=4553;
     char c1=a1;
     
     char cc=98;
     int d=cc;
+    d=static_cast<int>(cc);
+
+    Student bs;
+    bs.name="ss";
+    OPerson* oP=&bs;
+    if(Student* ts=dynamic_cast<Student*>(oP)){
+        cout << "dynamic_cast ok" << endl;
+    }else{
+        cout << "dynamic_cast err" << endl;
+    }
+
 
     const char *p1  = "hello world"; 
     //int pp = p1; //error
@@ -110,6 +141,14 @@ void demo::test_base()
     }
     cout << "type id: a1:" << typeid(a1).name() <<  endl;
 
+    //sizeof
+    int sa=1;
+    char sc='s';
+    char* psc=&sc;
+    int arr[]={1,2,3,4};
+    cout << "sizeof pointer: " << sizeof(&sa) << endl; //int 4bytes , pointer 8bytes
+    cout << "sizeof : " << sizeof(sa) << sizeof(sc) << sizeof(psc) << sizeof(arr) << endl;
+    cout << "arr count :" << sizeof(arr)/sizeof(*arr) << endl;
 
 }
 
