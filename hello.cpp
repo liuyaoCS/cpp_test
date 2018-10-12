@@ -8,17 +8,17 @@ int main()
     cout << "###########Trace: Inside main function" << endl;
 #endif
 
-    test_base();
-    test_pointer();
-    test_struct();
-    test_object();
-    test_file();
-    test_exception();
-    test_dynamic_memory();
-    test_template("hi");
-    test_cpp11();
-    test_thread();
-    test_signal();
+    // test_base();
+    // test_pointer();
+    // test_struct();
+    // test_object();
+    // test_file();
+    // test_exception();
+    // test_dynamic_memory();
+    // test_template("hi");
+    // test_cpp11();
+    // test_thread();
+    // test_signal();
 
     test_common();
 
@@ -27,9 +27,17 @@ int main()
     return 0;
 }
 
+void fun(char c[3]){
+	cout<<sizeof(c); 
+}
 void demo::test_common(){
     Student * pS=new Student; //equals new Student()
     pS->name="test";
+
+    int a=0;
+	char b[3]="l";
+	cout<<sizeof(a)<<sizeof(b);
+	fun(b);
 }
 char print_char(){
     return 's';
@@ -286,12 +294,17 @@ void demo::test_cpp11(){
     int *i=new int(10);
     unique_ptr<int> u_ptr(i);
     cout << "u_ptr -> " << *u_ptr << endl;
+    //shared_ptr
+    std::shared_ptr<int> p1(new int(5));
+    std::shared_ptr<int> p2 = p1; // 都指向同一内存. 
+    p1.reset(); // 因为p2还在,所以内存没有释放.
+    p2.reset(); // 释放内存, 因为没有shared_ptr指向那块内存了.
+
 
     //atomic
     atomic_int count(100);
 
     //explicit 指定构造函数或转换函数为显式，即它不能用于复制初始化和隐式转换。
-
     //lambda
     //override
     
