@@ -13,6 +13,8 @@
 #include<pthread.h>
 #include<memory>
 
+#include<sys/time.h>
+
 using namespace std;
 
 #define DEBUG  //定义为预处理器变量

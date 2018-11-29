@@ -9,7 +9,7 @@
             "command": "gcc",
             "args": [
                 "-c",
-                "cutils.c",
+                "base/cutils.c",
                 "-o",
                 "cutils"
             ],
@@ -25,8 +25,24 @@
             "args": [
                 "-g","-W",
                 "-pthread","-std=c++11",
-                "hello.cpp","utils.cpp","cutils",
+                "base/hello.cpp","base/utils.cpp","cutils",
                 "-o","hello"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build test",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g","-ggdb","-O0",
+                "-std=c++11",
+                "-o",
+                "test",
+                "leetcode/test_valid_parentheses.cpp",
             ],
             "group": {
                 "kind": "build",

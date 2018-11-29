@@ -31,13 +31,27 @@ void fun(char c[3]){
 	cout<<sizeof(c); 
 }
 void demo::test_common(){
-    Student * pS=new Student; //equals new Student()
-    pS->name="test";
+    // Student * pS=new Student; //equals new Student()
+    // pS->name="test";
 
-    int a=0;
-	char b[3]="l";
-	cout<<sizeof(a)<<sizeof(b);
-	fun(b);
+    // int a=0;
+	// char b[3]="l";
+	// cout<<sizeof(a)<<sizeof(b);
+	// fun(b);
+
+    string f="/home/ly/cpp/demo/test1.txt";
+
+    struct timeval time;
+
+    gettimeofday(&time, NULL); 
+    long start_microsec = ((unsigned long long)time.tv_sec * 1000000) + time.tv_usec;
+    int r=access(f.c_str(),F_OK);
+
+    gettimeofday(&time, NULL); 
+    long end_microsec = ((unsigned long long)time.tv_sec * 1000000) + time.tv_usec;
+
+    cout << "access ret = " << r << " cost " << (end_microsec-start_microsec) <<endl;
+
 }
 char print_char(){
     return 's';
