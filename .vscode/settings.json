@@ -34,7 +34,8 @@
         "stdexcept": "cpp",
         "tuple": "cpp",
         "utility": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "deque": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

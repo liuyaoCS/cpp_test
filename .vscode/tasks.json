@@ -42,7 +42,7 @@
                 "-std=c++11",
                 "-o",
                 "test",
-                "leetcode/test_valid_parentheses.cpp",
+                "leetcode/test_binary_tree_preorder_traversal.cpp",
             ],
             "group": {
                 "kind": "build",
